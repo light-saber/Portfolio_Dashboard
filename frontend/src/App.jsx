@@ -14,28 +14,26 @@ import { useAuthStatus, usePortfolio } from './hooks/usePortfolio'
 function Shell({ darkMode, onToggleDark }) {
   const { data: portfolio } = usePortfolio()
   return (
-    <div className={darkMode ? 'dark' : ''}>
-      <div className="flex min-h-screen bg-navy-950">
-        <Sidebar />
-        <div className="flex-1 ml-60 flex flex-col">
-          <Header
-            profile={portfolio?.profile}
-            lastUpdated={portfolio?.last_updated}
-            darkMode={darkMode}
-            onToggleDark={onToggleDark}
-          />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/holdings" element={<Holdings />} />
-              <Route path="/performance" element={<Performance />} />
-              <Route path="/projections" element={<Projections />} />
-              <Route path="/tax" element={<Tax />} />
-              <Route path="/health" element={<Health />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </main>
-        </div>
+    <div className="flex min-h-screen bg-slate-100 dark:bg-navy-950">
+      <Sidebar />
+      <div className="flex-1 ml-60 flex flex-col">
+        <Header
+          profile={portfolio?.profile}
+          lastUpdated={portfolio?.last_updated}
+          darkMode={darkMode}
+          onToggleDark={onToggleDark}
+        />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Overview />} />
+            <Route path="/holdings" element={<Holdings />} />
+            <Route path="/performance" element={<Performance />} />
+            <Route path="/projections" element={<Projections />} />
+            <Route path="/tax" element={<Tax />} />
+            <Route path="/health" element={<Health />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
       </div>
     </div>
   )
