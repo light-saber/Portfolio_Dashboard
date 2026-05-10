@@ -35,6 +35,7 @@ class KiteSessionManager:
         self._authenticated: bool = False
         self._url: str = self.MCP_URL
         self._call_lock = asyncio.Lock()
+        self._last_auth_check: float = 0   # epoch seconds
 
     def configure(self, url: str) -> None:
         self._url = url
@@ -140,9 +141,17 @@ class KiteSessionManager:
         return url
 
     async def check_auth(self) -> bool:
-        """Poll this until True. Works without holding the call lock."""
+        """
+        Returns auth status. Only hits Kite MCP at most once every 10 seconds
+        to avoid hammering the server while the frontend polls.
+        """
+        import time
         if self._authenticated:
             return True
+        now = time.monotonic()
+        if now - self._last_auth_check < 10:
+            return False
+        self._last_auth_check = now
         try:
             if self._session is None:
                 await asyncio.wait_for(self._open_session(), timeout=15)

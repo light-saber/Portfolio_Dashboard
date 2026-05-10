@@ -21,7 +21,7 @@ async def _fetch_and_build() -> dict:
     positions = await kite.get_positions()
     margins = await kite.get_margins()
 
-    portfolio = build_portfolio(
+    portfolio = await build_portfolio(
         profile=profile or {},
         equity_holdings=equity or [],
         mf_holdings=mf or [],

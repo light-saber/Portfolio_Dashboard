@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, BarChart, Bar, Cell, Legend, PieChart, Pie
+  ResponsiveContainer, BarChart, Bar, Cell, Legend
 } from 'recharts'
 import clsx from 'clsx'
 import { usePortfolio, useAllBenchmarks } from '../hooks/usePortfolio'
@@ -161,38 +161,24 @@ export default function Performance() {
         )}
       </div>
 
-      {/* Best/Worst + SIP */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Best & Worst Performers */}
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4">Best & Worst Performers</h3>
-          {isLoading ? <ChartSkeleton height="h-52" /> : (
-            bestWorst.length > 0 ? (
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart data={bestWorst} layout="vertical" margin={{ left: 10, right: 30 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3a5f" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#64748b', fontSize: 10 }} tickFormatter={v => `${v}%`} />
-                  <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} width={110} />
-                  <Tooltip formatter={(v) => `${v.toFixed(2)}%`} contentStyle={{ background: '#0f2040', border: '1px solid #1e3a5f', borderRadius: 8, fontSize: 12 }} />
-                  <Bar dataKey="pnl_pct" radius={[0, 4, 4, 0]} name="Return">
-                    {bestWorst.map((d, i) => <Cell key={i} fill={d.pnl_pct >= 0 ? '#22c55e' : '#ef4444'} />)}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            ) : <p className="text-sm text-slate-500 py-10 text-center">No holdings data</p>
-          )}
-        </div>
-
-        {/* SIP vs Lump Sum */}
-        <div className="card">
-          <h3 className="text-sm font-semibold text-slate-200 mb-1">SIP vs Lump Sum Split</h3>
-          <p className="text-xs text-slate-500 mb-4">Inferred from order history</p>
-          <div className="py-12 flex flex-col items-center justify-center gap-2 text-center">
-            <span className="text-3xl">📊</span>
-            <p className="text-sm text-slate-400 font-medium">Classification unavailable</p>
-            <p className="text-xs text-slate-500 max-w-xs">SIP vs lump sum detection requires recurring same-date orders. Connect order history to enable this view.</p>
-          </div>
-        </div>
+      {/* Best & Worst Performers */}
+      <div className="card">
+        <h3 className="text-sm font-semibold text-slate-200 mb-4">Best & Worst Performers</h3>
+        {isLoading ? <ChartSkeleton height="h-52" /> : (
+          bestWorst.length > 0 ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={bestWorst} layout="vertical" margin={{ left: 10, right: 50 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1e3a5f" horizontal={false} />
+                <XAxis type="number" tick={{ fill: '#64748b', fontSize: 10 }} tickFormatter={v => `${v}%`} />
+                <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} width={130} />
+                <Tooltip formatter={(v) => `${v.toFixed(2)}%`} contentStyle={{ background: '#0f2040', border: '1px solid #1e3a5f', borderRadius: 8, fontSize: 12 }} />
+                <Bar dataKey="pnl_pct" radius={[0, 4, 4, 0]} name="Return">
+                  {bestWorst.map((d, i) => <Cell key={i} fill={d.pnl_pct >= 0 ? '#22c55e' : '#ef4444'} />)}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          ) : <p className="text-sm text-slate-500 py-10 text-center">No holdings data</p>
+        )}
       </div>
     </div>
   )

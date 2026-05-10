@@ -8,7 +8,7 @@ export function useAuthStatus() {
   return useQuery({
     queryKey: ['auth-status'],
     queryFn: () => api.get('/auth/status').then(r => r.data),
-    refetchInterval: 3000,
+    refetchInterval: 8000,
   })
 }
 
