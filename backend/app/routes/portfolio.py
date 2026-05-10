@@ -1,4 +1,3 @@
-import asyncio
 from fastapi import APIRouter, HTTPException
 from ..kite_client import kite
 from ..normaliser import build_portfolio
@@ -15,13 +14,12 @@ async def _fetch_and_build() -> dict:
         if not authenticated:
             raise HTTPException(status_code=401, detail="Not authenticated with Kite. Visit /api/auth/login first.")
 
-    profile, equity, mf, positions, margins = await asyncio.gather(
-        kite.get_profile(),
-        kite.get_holdings(),
-        kite.get_mf_holdings(),
-        kite.get_positions(),
-        kite.get_margins(),
-    )
+    # Sequential calls — MCP ClientSession streams are not concurrent-safe
+    profile = await kite.get_profile()
+    equity = await kite.get_holdings()
+    mf = await kite.get_mf_holdings()
+    positions = await kite.get_positions()
+    margins = await kite.get_margins()
 
     portfolio = build_portfolio(
         profile=profile or {},

@@ -53,6 +53,9 @@ export default function Login() {
                 <p className="font-medium text-amber-400">Action required</p>
                 <p>Click the link below to authenticate with Zerodha. Return here after logging in — the dashboard will detect the session automatically.</p>
               </div>
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 leading-relaxed">
+                ⚠️ <strong>Warning:</strong> AI systems are unpredictable and non-deterministic. By continuing, you agree to interact with your Zerodha account via AI at your own risk.
+              </div>
               <a
                 href={loginUrl}
                 target="_blank"

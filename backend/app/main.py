@@ -20,10 +20,12 @@ async def lifespan(app: FastAPI):
     url = os.getenv("KITE_MCP_URL", "https://mcp.kite.trade/mcp")
     kite.configure(url)
     try:
-        await kite.start()
+        import asyncio
+        await asyncio.wait_for(kite.start(), timeout=15)
+    except asyncio.TimeoutError:
+        logger.warning("Kite MCP connection timed out — will retry on first request.")
     except Exception as exc:
-        logger.error("Could not connect to Kite MCP on startup: %s", exc)
-        logger.warning("Server started without Kite MCP connection — auth endpoints will retry.")
+        logger.warning("Kite MCP not connected at startup (%s) — will retry on first request.", exc)
     yield
     await kite.stop()
 
