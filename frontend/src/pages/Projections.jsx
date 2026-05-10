@@ -84,7 +84,7 @@ export default function Projections() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Future Projections</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Future Projections</h1>
         <p className="text-sm text-slate-500 mt-0.5">Scenario-based corpus forecast with SIP step-up modelling</p>
       </div>
 
@@ -98,7 +98,7 @@ export default function Projections() {
             onChange={e => setMonthlySIP(Number(e.target.value))}
             min={0}
             step={500}
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 text-sm focus:outline-none focus:border-gold-500 tabular-nums"
+            className="w-full bg-white border border-slate-300 text-slate-900 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-500 tabular-nums"
           />
           <p className="text-xs text-slate-500 mt-1">{formatINR(monthlySIP)} per month</p>
         </div>
@@ -123,7 +123,7 @@ export default function Projections() {
                 key={h}
                 onClick={() => setHorizon(h)}
                 className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
-                  horizon === h ? 'bg-gold-500 text-navy-950' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                  horizon === h ? 'bg-gold-500 text-navy-950' : 'bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700'
                 }`}
               >
                 {h}Y
@@ -140,14 +140,14 @@ export default function Projections() {
         </div>
         <div>
           <p className="text-xs text-slate-400">Current Portfolio Value (Base)</p>
-          <p className="text-xl font-semibold text-slate-100 tabular-nums">{isLoading ? '—' : formatINR(currentValue)}</p>
+          <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 tabular-nums">{isLoading ? '—' : formatINR(currentValue)}</p>
         </div>
       </div>
 
       {/* Area Chart */}
       <div className="card">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-semibold text-slate-200">Corpus Projection — {horizon} Years</h3>
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Corpus Projection — {horizon} Years</h3>
           <span className="text-xs text-slate-500">Assumptions: {stepUp}% annual SIP step-up, 6% inflation</span>
         </div>
         <ResponsiveContainer width="100%" height={320}>
@@ -181,9 +181,9 @@ export default function Projections() {
             <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: s.color }}>
               {s.label} ({(s.cagr * 100).toFixed(0)}% CAGR)
             </p>
-            <p className="text-2xl font-bold text-slate-100 tabular-nums">{formatINR(finalRow[s.key])}</p>
+            <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 tabular-nums">{formatINR(finalRow[s.key])}</p>
             <p className="text-xs text-slate-500 mt-1">In {horizon} years</p>
-            <div className="mt-3 pt-3 border-t border-slate-800">
+            <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800">
               <p className="text-xs text-slate-500">Inflation-adjusted (6% p.a.)</p>
               <p className="text-sm font-semibold text-slate-300 tabular-nums mt-0.5">{formatINR(adjustedValues[s.key])}</p>
             </div>
@@ -193,12 +193,12 @@ export default function Projections() {
 
       {/* Retirement Readiness */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-slate-200 mb-3">
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-3">
           Retirement Readiness
           <span className="text-xs font-normal text-slate-500 ml-2">— based on ₹5Cr moderate scenario target</span>
         </h3>
         <div className="flex items-center gap-4">
-          <div className="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden">
+          <div className="flex-1 h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full rounded-full bg-gradient-to-r from-gold-600 to-gold-400 transition-all duration-500"
               style={{ width: `${readinessPct}%` }}

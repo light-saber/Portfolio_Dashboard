@@ -108,7 +108,7 @@ export default function Performance() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Performance Analysis</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Performance Analysis</h1>
         <p className="text-sm text-slate-500 mt-0.5">Benchmark comparison and return attribution</p>
       </div>
 
@@ -120,7 +120,7 @@ export default function Performance() {
             onClick={() => setPeriod(p)}
             className={clsx(
               'px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors',
-              period === p ? 'bg-gold-500 text-navy-950' : 'text-slate-400 hover:text-slate-200 bg-slate-800 hover:bg-slate-700'
+              period === p ? 'bg-gold-500 text-navy-950' : 'text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 dark:text-slate-400 dark:hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700'
             )}
           >
             {p}
@@ -132,7 +132,7 @@ export default function Performance() {
       <div className="card">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h3 className="text-sm font-semibold text-slate-200">Index Benchmark Comparison</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Index Benchmark Comparison</h3>
             <p className="text-xs text-slate-500 mt-0.5">Normalised to 100 at start of period</p>
           </div>
           <span className="text-xs text-slate-500">Source: {benchmarkSource}</span>

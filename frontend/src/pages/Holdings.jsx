@@ -42,7 +42,7 @@ function HoldingsTable({ holdings, totalValue }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
-        <thead className="border-b border-slate-800">
+        <thead className="border-b border-slate-200 dark:border-slate-800">
           <tr>
             <th className="th text-left">Name</th>
             <th className="th text-left">Category</th>
@@ -68,7 +68,7 @@ function HoldingsTable({ holdings, totalValue }) {
                   {h.isin && <span className="text-xs text-slate-600">{h.isin}</span>}
                 </td>
                 <td className="td text-left">
-                  <span className="text-xs bg-slate-800 px-2 py-0.5 rounded-full text-slate-400">{h.category || '—'}</span>
+                  <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full text-slate-500 dark:text-slate-400">{h.category || '—'}</span>
                 </td>
                 <td className="td tabular-nums">{h.units?.toFixed(3)}</td>
                 <td className="td tabular-nums">{formatINR(h.avg_buy_price, { compact: false })}</td>
@@ -123,7 +123,7 @@ export default function Holdings() {
   return (
     <div className="p-6 space-y-5">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Holdings Breakdown</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Holdings Breakdown</h1>
         <p className="text-sm text-slate-500 mt-0.5">Detailed view of all positions with sortable columns</p>
       </div>
 
@@ -175,7 +175,7 @@ export default function Holdings() {
       {/* XIRR per holding */}
       {portfolio?.xirr_per_holding && Object.keys(portfolio.xirr_per_holding).length > 0 && (
         <div className="card">
-          <h3 className="text-sm font-semibold text-slate-200 mb-3">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-3">
             XIRR per Holding
             <span className="text-xs font-normal text-slate-500 ml-2">— single buy-and-hold approximation; incomplete transaction history may affect accuracy</span>
           </h3>
@@ -185,7 +185,7 @@ export default function Holdings() {
               .sort(([, a], [, b]) => b - a)
               .slice(0, 12)
               .map(([name, xirr]) => (
-                <div key={name} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50">
+                <div key={name} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800/50">
                   <span className="text-xs text-slate-400 truncate mr-2" title={name}>{name}</span>
                   <span className={clsx('text-xs font-semibold tabular-nums shrink-0', pnlColor(xirr))}>{xirr}%</span>
                 </div>

@@ -78,7 +78,7 @@ export default function Overview() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Portfolio Overview</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Portfolio Overview</h1>
         <p className="text-sm text-slate-500 mt-0.5">Your complete investment picture at a glance</p>
       </div>
 
@@ -133,7 +133,7 @@ export default function Overview() {
         {/* Asset Allocation */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-200">Asset Allocation</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Asset Allocation</h3>
             <span className="text-xs text-slate-500">Source: Kite MCP</span>
           </div>
           {isLoading ? <ChartSkeleton height="h-52" /> : (
@@ -155,7 +155,7 @@ export default function Overview() {
         {/* Equity vs Debt */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-200">Equity vs Debt Split</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Equity vs Debt Split</h3>
             <span className="text-xs text-slate-500">Source: Kite MCP</span>
           </div>
           {isLoading ? <ChartSkeleton height="h-52" /> : (
@@ -177,7 +177,7 @@ export default function Overview() {
         {/* Cap Exposure */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-200">Market Cap Exposure</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Market Cap Exposure</h3>
             <span className="text-xs text-slate-500">Source: Kite MCP (inferred)</span>
           </div>
           {isLoading ? <ChartSkeleton height="h-32" /> : (
@@ -200,7 +200,7 @@ export default function Overview() {
         {/* Geographic */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-slate-200">Domestic vs International</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">Domestic vs International</h3>
             <span className="text-xs text-slate-500">Source: Kite MCP (inferred)</span>
           </div>
           {isLoading ? <ChartSkeleton height="h-52" /> : (

@@ -103,7 +103,7 @@ const ScoreBar = ({ score, label, tooltip }) => {
   return (
     <div className="group relative">
       {tooltip && (
-        <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10 w-52 bg-navy-800 text-xs text-slate-300 rounded-lg p-2.5 border border-slate-700 shadow-xl">
+        <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10 w-52 bg-white border-slate-200 text-slate-600 dark:bg-navy-800 dark:text-slate-300 dark:border-slate-700 text-xs rounded-lg p-2.5 border shadow-xl">
           {tooltip}
         </div>
       )}
@@ -111,7 +111,7 @@ const ScoreBar = ({ score, label, tooltip }) => {
         <span className="text-xs text-slate-400 cursor-default">{label}</span>
         <span className="text-sm font-bold text-slate-200 tabular-nums">{score} / 10</span>
       </div>
-      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
         <div className={clsx('h-full rounded-full transition-all duration-700', color)} style={{ width: `${score * 10}%` }} />
       </div>
     </div>
@@ -135,20 +135,20 @@ export default function Health() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Portfolio Health Report</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Portfolio Health Report</h1>
         <p className="text-sm text-slate-500 mt-0.5">Comprehensive scorecard and actionable insights</p>
       </div>
 
       {/* Overall Score */}
       {!isLoading && (
-        <div className="card bg-gradient-to-br from-navy-900 to-navy-800 border-gold-500/20">
+        <div className="card bg-gradient-to-br from-slate-50 to-white dark:from-navy-900 dark:to-navy-800 border-gold-500/20">
           <div className="flex items-center gap-5">
             <div className="w-20 h-20 rounded-full border-4 border-gold-500 flex items-center justify-center shrink-0">
               <span className="text-2xl font-bold text-gold-400">{scores.overall}</span>
             </div>
             <div>
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Overall Portfolio Rating</p>
-              <p className="text-2xl font-bold text-slate-100 mt-0.5">
+              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Overall Portfolio Rating</p>
+              <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-0.5">
                 {scores.overall >= 7 ? 'Good' : scores.overall >= 5 ? 'Fair' : 'Needs Attention'}
               </p>
               <p className="text-xs text-slate-500 mt-1">Composite of diversification, risk-adjusted return, tax efficiency, and liquidity</p>
@@ -159,12 +159,12 @@ export default function Health() {
 
       {/* Scorecard */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4">
           Scorecard
           <span className="text-xs font-normal text-slate-500 ml-2">— hover for methodology</span>
         </h3>
         {isLoading ? (
-          <div className="space-y-3">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-8 bg-slate-800 animate-pulse rounded" />)}</div>
+          <div className="space-y-3">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-8 bg-slate-200 dark:bg-slate-800 animate-pulse rounded" />)}</div>
         ) : (
           <div className="space-y-5">
             <ScoreBar score={scores.diversification} label="Diversification Quality"
@@ -186,7 +186,7 @@ export default function Health() {
             <CheckCircle size={14} /> Top Strengths
           </h3>
           {isLoading ? (
-            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-800 animate-pulse rounded" />)}</div>
+            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-200 dark:bg-slate-800 animate-pulse rounded" />)}</div>
           ) : strengths.length > 0 ? (
             <ul className="space-y-2">
               {strengths.map((s, i) => (
@@ -204,7 +204,7 @@ export default function Health() {
             <XCircle size={14} /> Top Weaknesses
           </h3>
           {isLoading ? (
-            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-800 animate-pulse rounded" />)}</div>
+            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-200 dark:bg-slate-800 animate-pulse rounded" />)}</div>
           ) : weaknesses.length > 0 ? (
             <ul className="space-y-2">
               {weaknesses.map((w, i) => (
@@ -222,7 +222,7 @@ export default function Health() {
             <AlertCircle size={14} /> Immediate Actions
           </h3>
           {isLoading ? (
-            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-800 animate-pulse rounded" />)}</div>
+            <div className="space-y-2">{Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-10 bg-slate-200 dark:bg-slate-800 animate-pulse rounded" />)}</div>
           ) : actions.length > 0 ? (
             <ol className="space-y-2">
               {actions.map((a, i) => (
@@ -237,13 +237,13 @@ export default function Health() {
       </div>
 
       {/* AI Summary placeholder */}
-      <div className="card border-dashed border-slate-700 bg-slate-900/30">
+      <div className="card border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900/30">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">🤖</span>
-          <h3 className="text-sm font-semibold text-slate-400">Plain-English Portfolio Summary</h3>
-          <span className="text-xs bg-slate-800 text-slate-500 px-2 py-0.5 rounded-full">Claude API — coming soon</span>
+          <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">Plain-English Portfolio Summary</h3>
+          <span className="text-xs bg-slate-200 dark:bg-slate-800 text-slate-500 px-2 py-0.5 rounded-full">Claude API — coming soon</span>
         </div>
-        <p className="text-xs text-slate-600">A 2–3 paragraph executive summary generated by Claude API (streaming) will appear here.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-600">A 2–3 paragraph executive summary generated by Claude API (streaming) will appear here.</p>
       </div>
     </div>
   )

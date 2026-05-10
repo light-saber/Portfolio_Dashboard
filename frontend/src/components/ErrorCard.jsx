@@ -10,7 +10,7 @@ export default function ErrorCard({ message, onRetry }) {
         {onRetry && (
           <button
             onClick={onRetry}
-            className="mt-3 flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-slate-100 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors"
+            className="mt-3 flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 dark:text-slate-300 dark:hover:text-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 px-3 py-1.5 rounded-lg transition-colors"
           >
             <RefreshCw size={12} />
             Retry

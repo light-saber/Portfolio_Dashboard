@@ -65,7 +65,7 @@ export default function Tax() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-100">Tax & Optimization</h1>
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Tax & Optimization</h1>
         <p className="text-sm text-slate-500 mt-0.5">FY 2025-26 — Indian tax rules (LTCG / STCG)</p>
       </div>
 
@@ -111,7 +111,7 @@ export default function Tax() {
 
       {/* Tax Breakdown */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">Tax Rate Reference — FY 2025-26</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4">Tax Rate Reference — FY 2025-26</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -151,10 +151,10 @@ export default function Tax() {
 
       {/* Tax Harvesting Opportunities */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-slate-200 mb-1">Tax Harvesting Opportunities</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Tax Harvesting Opportunities</h3>
         <p className="text-xs text-slate-500 mb-4">Holdings with unrealised losses that can offset gains before FY-end</p>
         {isLoading ? (
-          <div className="space-y-2">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-10 bg-slate-800 rounded animate-pulse" />)}</div>
+          <div className="space-y-2">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-10 bg-slate-200 dark:bg-slate-800 rounded animate-pulse" />)}</div>
         ) : tax.harvestCandidates.length > 0 ? (
           <div className="space-y-2">
             {tax.harvestCandidates.map((h, i) => (
@@ -177,7 +177,7 @@ export default function Tax() {
 
       {/* Rebalancing Alerts */}
       <div className="card">
-        <h3 className="text-sm font-semibold text-slate-200 mb-1">Rebalancing Alerts</h3>
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Rebalancing Alerts</h3>
         <p className="text-xs text-slate-500 mb-4">Holdings that have drifted &gt;5% from target allocation</p>
         {isLoading ? null : (
           portfolio?.concentration_flags?.length > 0 ? (
@@ -196,13 +196,13 @@ export default function Tax() {
       </div>
 
       {/* AI Recommendations placeholder */}
-      <div className="card border-dashed border-slate-700 bg-slate-900/30">
+      <div className="card border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900/30">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">🤖</span>
-          <h3 className="text-sm font-semibold text-slate-400">AI Recommendations</h3>
-          <span className="text-xs bg-slate-800 text-slate-500 px-2 py-0.5 rounded-full">Coming soon</span>
+          <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">AI Recommendations</h3>
+          <span className="text-xs bg-slate-200 dark:bg-slate-800 text-slate-500 px-2 py-0.5 rounded-full">Coming soon</span>
         </div>
-        <p className="text-xs text-slate-600">Claude API-powered recommendations (funds to increase/exit, overlaps to consolidate) will appear here.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-600">Claude API-powered recommendations (funds to increase/exit, overlaps to consolidate) will appear here.</p>
       </div>
     </div>
   )
