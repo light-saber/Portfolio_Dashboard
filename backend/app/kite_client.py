@@ -89,10 +89,10 @@ class KiteSessionManager:
     # Internal call helpers
     # ------------------------------------------------------------------
 
-    async def _raw_call(self, tool: str, args: dict) -> Any:
+    async def _raw_call(self, tool: str, args: dict, timeout: float = 30.0) -> Any:
         if self._session is None:
             raise RuntimeError("Kite MCP session not started")
-        result = await self._session.call_tool(tool, args)
+        result = await asyncio.wait_for(self._session.call_tool(tool, args), timeout=timeout)
         if hasattr(result, "content") and result.content:
             raw = (
                 result.content[0].text
